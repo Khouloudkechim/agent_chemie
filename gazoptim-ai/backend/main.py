@@ -5,10 +5,14 @@ from core.config import settings
 
 app = FastAPI(title="GazOptim AI", version="1.0.0")
 
+import os
+
+frontend_url = os.getenv("FRONTEND_URL", "http://localhost:3000")
+
 # CORS setup
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[frontend_url, "http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
